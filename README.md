@@ -1,6 +1,7 @@
 # HTTP 5112 C# and ASP.NET
 
 A repo to store files for http5112 C# and ASP.NET
+Buikding web applications using Microsofts C# and ASP.NET framework.
 
 ---
 ![C Sharp, ASP.NET](csharp-aspnet.png)
