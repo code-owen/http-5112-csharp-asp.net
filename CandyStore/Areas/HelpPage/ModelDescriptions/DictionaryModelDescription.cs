@@ -1,6 +1,0 @@
-namespace CandyStore.Areas.HelpPage.ModelDescriptions
-{
-    public class DictionaryModelDescription : KeyValuePairModelDescription
-    {
-    }
-}

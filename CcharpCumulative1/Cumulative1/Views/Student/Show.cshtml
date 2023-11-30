@@ -1,0 +1,11 @@
+﻿@model Cumulative1.Models.Student
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>@Model.StudentFName @Model.StudentLName </h2>
+<a style="color:red;" href="/Student/DeleteConfirm/@Model.StudentId">Delete Student</a>
+<p>@Model.StudentNumber</p>
+<p>@Model.EnrollDate</p>
+

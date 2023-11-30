@@ -1,0 +1,28 @@
+﻿@model Cumulative1.Models.Class
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add New Class</h2>
+
+<form action="/Class/Create" method="POST">
+    <div>
+        <label>Class Code:</label><input type="text" pattern="[A-Z,a-z]{1-4}[0-9]{4}" placeholder="HTTP5555" name="ClassCode" />
+    </div>
+    <div>
+        <label>Class Name:</label><input type="text" name="ClassName" />
+    </div>
+    <div>
+        <label>Teacher ID:</label><input type="text" name="TeacherId" />
+    </div>
+    <div>
+        <label>Start Date:</label><input type="date" name="StartDate" />
+    </div>
+    <div>
+        <label>Finish Date:</label><input type="date" name="FinishDate" />
+    </div>
+    <div>
+        <input type="submit" value="Add Class" />
+    </div>
+</form>
+

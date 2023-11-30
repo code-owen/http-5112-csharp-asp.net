@@ -1,0 +1,25 @@
+﻿@model Cumulative1.Models.Student
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add New Student</h2>
+
+<form action="/Student/Create" method="POST">
+    <div>
+        <label>First Name:</label><input type="text" name="StudentFName" />
+    </div>
+    <div>
+        <label>Last Name:</label><input type="text" name="StudentLName" />
+    </div>
+    <div>
+        <label>Date of Enrollment:</label><input type="date" name="EnrollDate" />
+    </div>
+    <div>
+        <label>Student Number:</label><input type="text" pattern="[N][0-9]{4}" placeholder="N5555" name="StudentNumber" />
+    </div>
+    <div>
+        <input type="submit" value="Add Student" />
+    </div>
+</form>
+

@@ -40,5 +40,46 @@ namespace Cumulative1.Controllers
             //passes the id to /Teacher/Show.cshtml
             return View(SelectedTeacher);
         }
+
+        //GET:
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //POST: /Teacher/Create
+        [HttpPost]
+        public ActionResult Create(Teacher NewTeacher)
+        {
+            //Capture the Teacher information posted to us
+
+            //Add the Teacher information to the database
+            TeacherDataController Controller = new TeacherDataController();
+            //Go back to the original list of teachers
+            Controller.AddTeacher(NewTeacher);
+            //Redirects to the list Teachers method
+            return RedirectToAction("List");
+        }
+
+        //GET : Teacher Delete
+        public ActionResult DeleteConfirm(int id)
+        {
+            TeacherDataController Controller = new TeacherDataController();
+
+            Teacher SelectedTeacher = Controller.FindTeacher(id);
+
+            
+            
+            return View(SelectedTeacher);
+        }
+
+        //POST : /Teacher/Delete/{TeacherId}
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            TeacherDataController Controller = new TeacherDataController();
+            Controller.DeleteTeacher(id);
+            return RedirectToAction("List");
+        }
     }
 }

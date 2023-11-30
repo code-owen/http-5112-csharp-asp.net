@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Cumulative1.Models.Student>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Student's List</h2>
+
+<a href="/Student/New">Add Student</a>
+
+
+<form action="/Student/List" method="GET">
+    <div>
+        <input type="text" name="StudentSearch" />
+        <input type="submit" value="Search" />
+    </div>
+</form>
+@{
+    foreach (Cumulative1.Models.Student Student in Model)
+            {
+
+    <div class="listitem row">
+        <div class="col-md-12">
+            <a href="/Student/Show/@Student.StudentId">@Student.StudentFName @Student.StudentLName</a>
+        </div>
+    </div>
+
+            }
+}
+

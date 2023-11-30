@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Cumulative1.Models.Class>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Class List</h2>
+
+<a href="/Class/New">Add Class</a>
+
+
+<form action="/Class/List" method="GET">
+    <div>
+        <input type="text" name="ClassSearch" />
+        <input type="submit" value="Search" />
+    </div>
+</form>
+@{
+    foreach (Cumulative1.Models.Class Class in Model)
+    {
+
+        <div>
+            <div>
+                <a href="/Class/Show/@Class.ClassId">@Class.ClassCode @Class.ClassName</a>
+            </div>
+        </div>
+
+    }
+}
+

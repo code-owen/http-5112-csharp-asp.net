@@ -20,7 +20,7 @@ namespace Cumulative1.Models
         public string TeacherLName { get; set; }
 
         //Teacher employee number
-        public string EmployeeId { get; set; }
+        public string EmployeeNumber { get; set; }
 
         //Teacher hire date
         public string HireDate { get; set; }
