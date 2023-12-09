@@ -10,7 +10,7 @@ namespace Cumulative1.Controllers
 {
     public class StudentDataController : Controller
     {
-          //uses the school context class to access the database
+        //uses the school context class to access the database
         private SchoolDbContext School = new SchoolDbContext();
 
         /// <summary>
@@ -222,6 +222,51 @@ namespace Cumulative1.Controllers
 
 
 
+        }
+        /// <summary>
+        /// Updates the student in the databae given the student id and Student information
+        /// </summary>
+        /// <param name="StudentId">The Student Id to update</param>
+        /// <param name="UpdatedStudent">An object containing the new information</param>
+        /// <example>
+        /// POST: /StudentData/UpdateTecaher/1
+        /// 
+        /// POST DATA / FORM DATA ? REQUEST BODY
+        /// {
+        ///     "StudentFName" : "Alexander"
+        ///     "StudentLName" : "Bennett"
+        /// }
+        /// </example>
+        /// <param name="StudentId"
+        /// <return>
+        /// </return>
+        [HttpPost]
+        public void UpdateStudent(int StudentId, [Microsoft.AspNetCore.Mvc.FromBody] Student UpdatedStudent)
+        {
+            //update logic
+            MySqlConnection Conn = School.AccessDatabase();
+
+            Conn.Open();
+
+            MySqlCommand cmd = Conn.CreateCommand();
+
+
+            //query
+            string query = "update students set studentfname=@fname, studentlname=@lname, studentnumber=@snumber, enroldate=@edate where studentid=@id;";
+
+
+            cmd.CommandText = query;
+            cmd.Parameters.AddWithValue("@fname", UpdatedStudent.StudentFName);
+            cmd.Parameters.AddWithValue("@lname", UpdatedStudent.StudentLName);
+            cmd.Parameters.AddWithValue("@snumber", UpdatedStudent.StudentNumber);
+            cmd.Parameters.AddWithValue("@edate", UpdatedStudent.EnrollDate);
+            cmd.Parameters.AddWithValue("@id", StudentId);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
         }
     }
 }

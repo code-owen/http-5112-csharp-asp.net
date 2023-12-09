@@ -79,5 +79,33 @@ namespace Cumulative1.Controllers
             Controller.DeleteStudent(id);
             return RedirectToAction("List");
         }
+
+        //GET: /Student/Update/{Studentid}
+        //routes to Views/Student/Update.cshtml
+        public ActionResult Update(int id)
+        {
+            StudentDataController Controller = new StudentDataController();
+
+            //want to disaplay the Student information
+            Student SelectedStudent = Controller.FindStudent(id);
+
+            return View(SelectedStudent);
+        }
+
+        //POST: /Student/Update/{Studentid}
+        //updates the Student
+        //redirects to the show Student page
+        [HttpPost]
+        public ActionResult UpdateStudent(int id, Student UpdatedStudent)
+        {
+
+            //update the Student
+            StudentDataController controller = new StudentDataController();
+
+            controller.UpdateStudent(id, UpdatedStudent);
+
+            //return to the show page
+            return RedirectToAction("Show/" + id);
+        }
     }
 }

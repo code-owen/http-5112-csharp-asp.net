@@ -7,19 +7,22 @@
 
 <form action="/Teacher/Create" method="POST">
     <div>
-        <label>First Name:</label><input type="text" name="TeacherFName"/>
+        <label>First Name:</label><input type="text" name="TeacherFName" />
     </div>
     <div>
-        <label>Last Name:</label><input type="text" name="TeacherLName"/>
+        <label>Last Name:</label><input type="text" name="TeacherLName" />
     </div>
     <div>
-        <label>Salary:</label><input type="number" step="0.01" name="Salary"/>
+        <label>Salary:</label><input type="number" step="0.01" name="Salary" />
     </div>
     <div>
-        <label>Employee Number:</label><input type="text" pattern="[T][0-9]{3}" placeholder="T555" name="EmployeeNumber"/>
+        <label>Employee Number:</label><input type="text" pattern="[T][0-9]{3}" placeholder="T555" name="EmployeeNumber" />
     </div>
     <div>
-        <input type="submit" value="Add Teacher"/>
+        <label>Hire Date:</label><input type="date" name="HireDate" />
+    </div>
+    <div>
+        <input type="submit" value="Add Teacher" />
     </div>
 </form>
 

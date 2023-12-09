@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Cumulative1.Models;
 using MySql.Data.MySqlClient;
 
@@ -181,12 +183,13 @@ namespace Cumulative1.Controllers
             MySqlConnection Conn = School.AccessDatabase();
             Conn.Open();
             MySqlCommand CMD = Conn.CreateCommand();
-            string query = "insert into teachers (teacherfname, teacherlname, employeenumber, salary, hiredate) values(@teacherfname, @teacherlname, @employeenumber, @salary, CURRENT_TIMESTAMP());";
+            string query = "insert into teachers (teacherfname, teacherlname, employeenumber, salary, hiredate) values(@teacherfname, @teacherlname, @employeenumber, @salary, @hiredate);";
             CMD.CommandText = query;
             CMD.Parameters.AddWithValue("@teacherfname", NewTeacher.TeacherFName);
             CMD.Parameters.AddWithValue("@teacherlname", NewTeacher.TeacherLName);
             CMD.Parameters.AddWithValue("@employeenumber", NewTeacher.EmployeeNumber);
             CMD.Parameters.AddWithValue("@salary", NewTeacher.Salary);
+            CMD.Parameters.AddWithValue("@hiredate", NewTeacher.HireDate);
 
             CMD.Prepare();
 
@@ -224,6 +227,52 @@ namespace Cumulative1.Controllers
 
 
 
+        }
+        /// <summary>
+        /// Updates the teacher in the databae given the teacher id and teacher information
+        /// </summary>
+        /// <param name="TeacherId">The teacher Id to update</param>
+        /// <param name="UpdatedTeacher">An object containing the new information</param>
+        /// <example>
+        /// POST: /TeacherData/UpdateTecaher/1
+        /// 
+        /// POST DATA / FORM DATA ? REQUEST BODY
+        /// {
+        ///     "TeacherFName" : "Alexander"
+        ///     "TeacherLName" : "Bennett"
+        /// }
+        /// </example>
+        /// <param name="TeacherId"
+        /// <return>
+        /// </return>
+        [HttpPost]
+        public void UpdateTeacher(int TeacherId, [Microsoft.AspNetCore.Mvc.FromBody] Teacher UpdatedTeacher)
+        {
+            //update logic
+            MySqlConnection Conn = School.AccessDatabase();
+
+            Conn.Open();
+
+            MySqlCommand cmd = Conn.CreateCommand();
+
+
+            //query
+            string query = "update teachers set teacherfname=@fname, teacherlname=@lname, employeenumber=@enumber, hiredate=@hdate, salary=@salary where teacherid=@id;";
+
+
+                cmd.CommandText = query;
+                cmd.Parameters.AddWithValue("@fname", UpdatedTeacher.TeacherFName);
+                cmd.Parameters.AddWithValue("@lname", UpdatedTeacher.TeacherLName);
+                cmd.Parameters.AddWithValue("@enumber", UpdatedTeacher.EmployeeNumber);
+                cmd.Parameters.AddWithValue("@hdate", UpdatedTeacher.HireDate);
+                cmd.Parameters.AddWithValue("@salary", UpdatedTeacher.Salary);
+                cmd.Parameters.AddWithValue("@id", TeacherId);
+                
+                cmd.Prepare();
+
+                cmd.ExecuteNonQuery();
+
+                Conn.Close();
         }
     }
 }

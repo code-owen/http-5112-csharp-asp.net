@@ -1,0 +1,35 @@
+﻿@model Cumulative1.Models.Student
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Student Profile</h2>
+
+<div id="container">
+    <nav>
+        <a class="navlink" href="/Student/Show/@Model.StudentId">Back</a>
+    </nav>
+    <form id="update-form" action="/Student/UpdateStudent/@Model.StudentId" method="POST">
+        <div>
+            <label>First Name:</label>
+            <input type="text" value="@Model.StudentFName" name="StudentFName" />
+        </div>
+        <div>
+            <label>Last Name:</label>
+            <input type="text" value="@Model.StudentLName" name="StudentLName" />
+        </div>
+        <div>
+            <label>Student Number:</label>
+            <input type="text" pattern="[N][0-9]{4}" placeholder="N5555" name="StudentNumber" value="@Model.StudentNumber" />
+        </div>
+        <div>
+            <label>Enroll Date:</label>
+            <input type="text" pattern="[0-9]{4}[-][0-9]{2}[0-9]{2}" value="@Model.EnrollDate" name="HireDate" placeholder="@Model.EnrollDate" />
+        </div>
+        <div>
+            <input type="submit" value="Update Student" />
+        </div>
+    </form>
+</div>
